@@ -266,16 +266,16 @@ export const HeroSection: React.FC = () => {
 
                     <motion.h2
                         variants={itemVariants}
-                        className="text-3xl md:text-5xl pb-3 font-light bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 bg-clip-text text-transparent"
+                        className="text-3xl md:text-5xl pb-3 font-light bg-gradient-to-r from-[#00FF66] via-white to-gray-400 bg-clip-text text-transparent"
                     >
-                        Trading Indicators. Perfected.
+                        Trade With Absolute Clarity.
                     </motion.h2>
 
                     <motion.p
                         variants={itemVariants}
                         className="text-gray-400 mt-6 mb-12 max-w-2xl text-lg leading-relaxed"
                     >
-                        Two powerful indicators designed to give you clarity on the charts. Spot divergences, map liquidity, and eliminate the guesswork.
+                        Institutional-grade TradingView indicators that eliminate market noise. Map liquidity, track high timeframe momentum, and identify high-probability setups without the guesswork.
                     </motion.p>
 
                     <motion.button

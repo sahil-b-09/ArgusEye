@@ -28,6 +28,50 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#0C0A09] text-white font-sans selection:bg-[#00FF66]/30">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is ArgusEye?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ArgusEye is a suite of institutional-grade TradingView indicators designed to eliminate market noise, map liquidity, and identify high-probability trade setups for both intraday and swing traders."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does the HTF Argus Eye work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The HTF (High Timeframe) Argus Eye displays macro timeframe candles (like 4-hour or Daily) directly alongside your lower timeframe chart in real-time. This ensures you never lose the overarching market narrative while looking for entries."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this an automated trading bot?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No, ArgusEye acts as an advanced visual toolkit for discretionary traders. It does not execute trades automatically, but it highlights optimal stop-loss, take-profit levels, and momentum shifts so you can confidently make informed decisions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does it take to gain access to the scripts?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Once you subscribe and complete your payment, your TradingView username is manually authorized by our team. You will receive access to the private invite-only scripts within 12 hours of purchase."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
 
       {/* Dynamic Navigation */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#0C0A09]/70 backdrop-blur-xl transition-all">
@@ -216,6 +260,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section (AI SEO Optimized) */}
+      <section id="faq" className="py-24 bg-[#0C0A09] relative border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-400">Everything you need to know about the ArgusEye indicators.</p>
+          </div>
+          <div className="space-y-6">
+            <div className="p-6 bg-[#111111] border border-white/5 rounded-2xl">
+              <h3 className="text-lg font-semibold mb-2 text-white">What is ArgusEye?</h3>
+              <p className="text-gray-400">ArgusEye is a suite of institutional-grade TradingView indicators designed to eliminate market noise, map liquidity, and identify high-probability trade setups for both intraday and swing traders.</p>
+            </div>
+            <div className="p-6 bg-[#111111] border border-white/5 rounded-2xl">
+              <h3 className="text-lg font-semibold mb-2 text-white">How does the HTF Argus Eye work?</h3>
+              <p className="text-gray-400">The HTF (High Timeframe) Argus Eye displays macro timeframe candles (like 4-hour or Daily) directly alongside your lower timeframe chart in real-time. This ensures you never lose the overarching market narrative while looking for entries.</p>
+            </div>
+            <div className="p-6 bg-[#111111] border border-white/5 rounded-2xl">
+              <h3 className="text-lg font-semibold mb-2 text-white">Is this an automated trading bot?</h3>
+              <p className="text-gray-400">No, ArgusEye acts as an advanced visual toolkit for discretionary traders. It does not execute trades automatically, but it highlights optimal stop-loss, take-profit levels, and momentum shifts so you can confidently make informed decisions.</p>
+            </div>
+            <div className="p-6 bg-[#111111] border border-white/5 rounded-2xl">
+              <h3 className="text-lg font-semibold mb-2 text-white">How long does it take to gain access to the scripts?</h3>
+              <p className="text-gray-400">Once you subscribe and complete your payment, your TradingView username is manually authorized by our team. You will receive access to the private invite-only scripts within 12 hours of purchase.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-black pt-20 pb-10 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6">
@@ -254,6 +326,13 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        planName={selectedPlan}
+        amount={selectedAmount}
+      />
     </div>
   );
 }
