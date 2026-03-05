@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/ui/hero-odyssey";
-import { CheckoutModal } from "@/components/checkout/CheckoutModal";
+
 import { Check, ArrowRight, PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -200,14 +200,14 @@ export default function Home() {
             <div className="p-8 rounded-3xl bg-[#111111] border border-white/5 hover:border-[#00FF66]/30 hover:shadow-[0_0_30px_rgba(0,255,102,0.05)] transition-all duration-300 flex flex-col h-full group">
               <h3 className="text-xl font-medium mb-2 group-hover:text-[#00FF66] transition-colors">Argus Eye 24/7</h3>
               <div className="text-4xl font-bold mb-6">
-                ₹{isYearly ? "57,600" : "6,000"} <span className="text-base font-normal text-gray-500">/ {isYearly ? "year" : "month"}</span>
+                ${isYearly ? "576" : "60"} <span className="text-base font-normal text-gray-500">/ {isYearly ? "year" : "month"}</span>
               </div>
               <ul className="space-y-4 mb-8 flex-1">
                 <li className="flex items-start gap-3 text-sm text-gray-400"><Check className="w-4 h-4 mt-0.5 text-[#00FF66]" /> Full access to Argus Eye 24/7</li>
                 <li className="flex items-start gap-3 text-sm text-gray-400"><Check className="w-4 h-4 mt-0.5 text-[#00FF66]" /> Regular script updates included</li>
               </ul>
               <button
-                onClick={() => handleSubscribe('Argus Eye 24/7', isYearly ? 50000 : 5000)}
+                onClick={() => handleSubscribe('Argus Eye 24/7', isYearly ? 576 : 60)}
                 className="w-full py-4 rounded-xl bg-white/5 group-hover:bg-[#00FF66]/10 border border-white/10 group-hover:border-[#00FF66]/30 group-hover:text-[#00FF66] transition-all duration-300 font-medium tracking-wide mb-3"
               >
                 Subscribe 24/7
@@ -222,7 +222,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-medium mb-2">The Complete Bundle</h3>
               <div className="text-5xl font-bold mb-6 text-[#00FF66]">
-                ₹{isYearly ? "72,000" : "7,500"} <span className="text-base font-normal text-gray-500">/ {isYearly ? "year" : "month"}</span>
+                ${isYearly ? "720" : "75"} <span className="text-base font-normal text-gray-500">/ {isYearly ? "year" : "month"}</span>
               </div>
               <ul className="space-y-4 mb-8 flex-1">
                 <li className="flex items-start gap-3 text-sm text-gray-300"><Check className="w-4 h-4 mt-0.5 text-[#00FF66]" /> Argus Eye 24/7 Included</li>
@@ -230,7 +230,7 @@ export default function Home() {
                 <li className="flex items-start gap-3 text-sm text-gray-300"><Check className="w-4 h-4 mt-0.5 text-white" /> Access to private community</li>
               </ul>
               <button
-                onClick={() => handleSubscribe('Argus Eye Bundle', isYearly ? 65000 : 6500)}
+                onClick={() => handleSubscribe('Argus Eye Bundle', isYearly ? 720 : 75)}
                 className="w-full py-4 rounded-xl bg-[#00FF66] text-black hover:bg-[#00CC52] transition-colors font-bold tracking-wide shadow-[0_0_20px_rgba(0,255,102,0.3)] hover:shadow-[0_0_25px_rgba(0,255,102,0.5)] mb-3"
               >
                 Subscribe to Bundle
@@ -242,14 +242,14 @@ export default function Home() {
             <div className="p-8 rounded-3xl bg-[#111111] border border-white/5 hover:border-[#00FFAA]/30 hover:shadow-[0_0_30px_rgba(0,255,170,0.05)] transition-all duration-300 flex flex-col h-full group">
               <h3 className="text-xl font-medium mb-2 group-hover:text-[#00FFAA] transition-colors">HTF Argus Eye</h3>
               <div className="text-4xl font-bold mb-6">
-                ₹{isYearly ? "28,800" : "3,000"} <span className="text-base font-normal text-gray-500">/ {isYearly ? "year" : "month"}</span>
+                ${isYearly ? "288" : "30"} <span className="text-base font-normal text-gray-500">/ {isYearly ? "year" : "month"}</span>
               </div>
               <ul className="space-y-4 mb-8 flex-1">
                 <li className="flex items-start gap-3 text-sm text-gray-400"><Check className="w-4 h-4 mt-0.5 text-[#00FFAA]" /> Full access to HTF Argus Eye</li>
                 <li className="flex items-start gap-3 text-sm text-gray-400"><Check className="w-4 h-4 mt-0.5 text-[#00FFAA]" /> Regular script updates included</li>
               </ul>
               <button
-                onClick={() => handleSubscribe('HTF Argus Eye', isYearly ? 28800 : 3000)}
+                onClick={() => handleSubscribe('HTF Argus Eye', isYearly ? 288 : 30)}
                 className="w-full py-4 rounded-xl bg-white/5 group-hover:bg-[#00FFAA]/10 border border-white/10 group-hover:border-[#00FFAA]/30 group-hover:text-[#00FFAA] transition-all duration-300 font-medium tracking-wide mb-3"
               >
                 Subscribe HTF
@@ -327,12 +327,7 @@ export default function Home() {
         </div>
       </footer>
 
-      <CheckoutModal
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        planName={selectedPlan}
-        amount={selectedAmount}
-      />
+
     </div>
   );
 }
