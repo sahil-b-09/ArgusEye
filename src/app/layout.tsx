@@ -14,8 +14,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ArgusEye",
-  description: "Advanced TradingView Indicators & Automation",
+  title: "ArgusEye 24/7 - Best TradingView Indicators for Absolute Clarity",
+  description: "ArgusEye and ArgusEye 24/7 are institutional-grade TradingView indicators. Eliminate market noise, map liquidity, and identify high-probability setups with the ArgusEye toolkit.",
+  keywords: ["ArgusEye", "ArgusEye 24/7", "TradingView indicators", "HTF PO3", "trading automation", "ArgusEye indicator", "Argus Eye"],
+  openGraph: {
+    title: "ArgusEye 24/7 - Best TradingView Indicators",
+    description: "ArgusEye and ArgusEye 24/7 are institutional-grade TradingView indicators designed to eliminate market noise and map liquidity.",
+    url: "https://arguseye247.com",
+    siteName: "ArgusEye",
+    locale: "en_US",
+    type: "website",
+  },
   verification: {
     google: "-jjR3SoLaF3VfBi8BmsNl6LEbTqm-2P4KEW_aUAbyOs",
   },

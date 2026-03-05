@@ -15,21 +15,40 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Missing TradingView Username' }, { status: 400 });
         }
 
-        // Set up Nodemailer transport using Gmail (or any other SMTP service)
-        // Note: You will need to set EMAIL_USER and EMAIL_PASSWORD in your .env.local
+        // Set up Nodemailer transport using Hostinger SMTP
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.hostinger.com',
+            port: 465,
+            secure: true, // Use SSL
             auth: {
-                user: process.env.EMAIL_USER || 'your-email@gmail.com', // Replace with real env vars
-                pass: process.env.EMAIL_PASSWORD || 'your-app-password',
+                user: process.env.EMAIL_USER, // e.g. support@arguseye247.com
+                pass: process.env.EMAIL_PASSWORD,
             },
         });
 
-        // Create the email content
-        const mailOptions = {
-            from: process.env.EMAIL_USER || 'your-email@gmail.com',
-            to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'your-email@gmail.com', // Admin email
-            subject: `🚨 URGENT: New ArgusEye Subscription - Action Required`,
+        // 1. Send Welcome Email to the Customer
+        const customerMailOptions = {
+            from: `"ArgusEye Support" <${process.env.EMAIL_USER}>`,
+            to: customerEmail,
+            subject: `Welcome to ArgusEye! Your Access is Being Processed`,
+            html: `
+        <h2>Welcome to ArgusEye, ${customerName}!</h2>
+        <p>Thank you for subscribing to the <strong>${plan}</strong> plan.</p>
+        <p>We are currently processing your order and will grant access to your TradingView username (<strong>${tradingViewUsername}</strong>) within the next <strong>12 hours</strong>.</p>
+        <p>Once authorized, you will receive a notification directly on TradingView, and the indicators will appear under your "Invite-only scripts" tab.</p>
+        <br/>
+        <p>If you have any questions, feel free to reply directly to this email.</p>
+        <br/>
+        <p>Best regards,</p>
+        <p><strong>The ArgusEye Team</strong></p>
+      `,
+        };
+
+        // 2. Send Urgent Notification to the Admin
+        const adminMailOptions = {
+            from: `"ArgusEye System" <${process.env.EMAIL_USER}>`,
+            to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER, // Admin email
+            subject: `🚨 Action Required: New Subscription (${tradingViewUsername})`,
             html: `
         <h2>New Subscription Received!</h2>
         <p>A customer has successfully completed checkout. <strong>You need to grant them access to the indicator on TradingView within 12 hours.</strong></p>
@@ -53,15 +72,15 @@ export async function POST(req: Request) {
       `,
         };
 
-        // Send the email
-        // Uncomment this when you have actual EMAIL_USER and EMAIL_PASSWORD setup. For now we will mock it.
-        // await transporter.sendMail(mailOptions);
+        // Send both emails (uncommented for production)
+        await transporter.sendMail(customerMailOptions);
+        await transporter.sendMail(adminMailOptions);
 
         console.log("==========================================");
-        console.log("📧 MOCK EMAIL SENT TO ADMIN:");
-        console.log("To:", mailOptions.to);
-        console.log("Subject:", mailOptions.subject);
-        console.log("TradingView Username to add:", tradingViewUsername);
+        console.log("📧 EMAILS DELIVERED SUCCESSFULLY");
+        console.log("Customer welcome email sent to:", customerEmail);
+        console.log("Admin notification sent to:", adminMailOptions.to);
+        console.log("==========================================");
         console.log("==========================================");
 
         return NextResponse.json({ success: true, message: 'Admin notified successfully' }, { status: 200 });
